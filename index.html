@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Celebration</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f3a683, #f7d794);
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #eb4d4b;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #eb4d4b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+
+        #greetingMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎉 Celebrate Your Birthday!</h1>
+        <p>Enter your name and let us celebrate your special day:</p>
+        <input type="text" id="nameInput" placeholder="Your Name">
+        <button id="submitButton">Celebrate!</button>
+        <p id="greetingMessage"></p>
+    </div>
+
+    <script>
+        if (!window.Telegram || !window.Telegram.WebApp) {
+            alert("Please open this app in Telegram.");
+        } else {
+            const telegram = window.Telegram.WebApp;
+
+            document.getElementById("submitButton").addEventListener("click", function () {
+                const name = document.getElementById("nameInput").value.trim();
+                if (name) {
+                    const message = `🎂 Happy Birthday, ${name}! 🎉`;
+                    document.getElementById("greetingMessage").textContent = message;
+
+                    telegram.sendData(JSON.stringify({ name: name }));
+                    telegram.close();
+                } else {
+                    alert("Please enter your name!");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
