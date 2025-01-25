@@ -72,6 +72,18 @@
             font-weight: bold;
             color: #27ae60;
         }
+
+        .link {
+            margin-top: 10px;
+            display: block;
+            font-size: 16px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -82,6 +94,7 @@
         <input type="text" id="nameInput" placeholder="Your Name">
         <button id="submitButton">Celebrate!</button>
         <p id="greetingMessage"></p>
+        <a id="websiteLink" class="link" href="#" target="_blank" style="display: none;">Visit Our Website</a>
     </div>
 
     <script>
@@ -92,11 +105,19 @@
 
             document.getElementById("submitButton").addEventListener("click", function () {
                 const name = document.getElementById("nameInput").value.trim();
+                const greetingMessage = document.getElementById("greetingMessage");
+                const websiteLink = document.getElementById("websiteLink");
+
                 if (name) {
                     const message = `🎂 Happy Birthday, ${name}! 🎉`;
-                    document.getElementById("greetingMessage").textContent = message;
-                    document.write("<a href='qusaiweb.com'>qusaiweb.com</a>")
+                    greetingMessage.textContent = message;
 
+                    // Linki göster ve URL'sini ayarla
+                    websiteLink.style.display = "block";
+                    websiteLink.href = "https://qusaiweb.com";
+                    websiteLink.textContent = "🌐 Visit Our Website";
+
+                    // Telegram'a veri gönder ve kapat
                     telegram.sendData(JSON.stringify({ name: name }));
                     telegram.close();
                 } else {
