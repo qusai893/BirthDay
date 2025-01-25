@@ -95,6 +95,7 @@
                 if (name) {
                     const message = `🎂 Happy Birthday, ${name}! 🎉`;
                     document.getElementById("greetingMessage").textContent = message;
+                    document.write("<a href='qusaiweb.com'>qusaiweb.com</a>")
 
                     telegram.sendData(JSON.stringify({ name: name }));
                     telegram.close();
